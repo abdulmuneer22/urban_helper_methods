@@ -51,6 +51,8 @@ this.state = {
 
 
 async getOrdersByUser(){
+
+  // Note :  try to get all orders as ListView
   var userID = "John"
   // find all the Orders placed by this user
   var i = 0

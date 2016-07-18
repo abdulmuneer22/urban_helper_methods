@@ -49,6 +49,13 @@ this.state = {
 }
 }
 
+getCurrentUser(){
+  var User =  firebase.auth().currentUser
+  if(User){
+    var name = User.email
+    console.log(name)
+  }
+}
 
 async getOrdersByUser(){
 
@@ -146,9 +153,10 @@ firebase.database().ref('users/'+userID+'/email').on('value',(snap)=>{
 })
 }
 
-letUserRegister(email,password){
+letUserRegister(email,password,displayName){
 let _email = email
 let _password = password
+
 firebase.auth().createUserWithEmailAndPassword(_email, _password).catch(function(error) {
 // Handle Errors here.
 //var errorCode = error.code;
@@ -259,7 +267,13 @@ componentWillMount(){
       <Text style={styles.ButtonText}>Find Orders</Text>
       </TouchableHighlight>
       
-      
+       <TouchableHighlight 
+      style={styles.Button}
+      onPress = {this.getCurrentUser.bind(this)}
+
+      >
+      <Text style={styles.ButtonText}>TestButton ( Current User )</Text>
+      </TouchableHighlight>
       
       
       
